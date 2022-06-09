@@ -1,0 +1,7 @@
+header {
+   background-image: linear-gradient(to right, rgb(41, 89, 171), rgb(23, 11, 74));
+}
+
+.d-flex {
+    justify-content: center;
+}
