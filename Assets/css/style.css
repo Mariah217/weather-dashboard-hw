@@ -2,10 +2,25 @@ header {
    background-image: linear-gradient(to right, rgb(41, 89, 171), rgb(23, 11, 74));
 }
 
+textarea {
+    resize: none;
+    width: 275px;
+    border-radius: 7px;
+}
+
 .d-flex {
     justify-content: center;
 }
 
 .row {
     justify-content: flex-start;
+}
+
+#search-button {
+    background-color: rgb(66, 144, 208);
+    color: white;
+    border-radius: 7px;
+    margin-top: 10px;
+    padding: 5px 110px;
+    
 }

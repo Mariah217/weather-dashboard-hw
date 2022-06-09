@@ -3,3 +3,5 @@
 //Step 3: grab input values from textbox
 
 //Variables:
+var searchCityEl = document.querySelector("#search-city");
+var searchBtn = document.querySelector("#search-button");
