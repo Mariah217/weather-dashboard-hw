@@ -17,24 +17,16 @@
         </div>
     </header>
 
+    <!--text area to search for city-->
     <section class="container my-5 px-0">
-        <div class="row m-0">
-            <div class="col-12 col-md-4 p-0">
-                <h3><strong>Search for a City:</strong></h3>
-                <textarea name="" id="search-city" placeholder="San Diego"></textarea>
-                <br>
-                <button id="search-button">Search</button>
-                <hr/>
-            </div>
-
-            
-
-            <div class="col-12 col-lg-8 p-0">
-                <h2>Weather</h2>
-            </div> 
-
+        <div class="col-12 col-md-3 p-0">
+            <h3><strong>Search for a City:</strong></h3>
+            <textarea name="" id="search-city" placeholder="San Diego"></textarea>
+            <br>
+            <button id="search-button">Search</button>
+            <hr />
             <!--quick select buttons-->
-            <div class="col-1">
+            <div class="col-12 col-lg-3 p-0">
                 <button id="austin"> Austin </button>
                 <button id="chicago"> Chicago </button>
                 <button id="newyork"> New York </button>
@@ -44,50 +36,72 @@
                 <button id="denver"> Denver </button>
                 <button id="atlanta"> Atlanta </button>
             </div>
+        </div>
+
+
+        <div class="weather-container">
+            <!--weather box-->
+            <div id="current-weather">
+                <h2 id="weather">Weather</h2>
+                <p>Temp:</p>
+                <p>Wind:</p>
+                <p>Humidity:</p>
+                <p>UV Index:</p>
+            </div>
 
             <!--cards for 5 day forcast-->
+            <div class="cards">
+                <div class="col-12 col-sm-2">
+                    <div class="card" style="width: 12rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Date</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
+                            <p class="card-text"> temp, wind, humidity </p>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="card" style="width: 12rem; margin-left: 283px;">
-                <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
-                    <p class="card-text"> temp, wind, humidity </p>
+                <div class="col-12 col-sm-2">
+                    <div class="card" style="width: 12rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Date</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
+                            <p class="card-text"> temp, wind, humidity </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-2">
+                    <div class="card" style="width: 12rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Date</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
+                            <p class="card-text"> temp, wind, humidity </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-2">
+                    <div class="card" style="width: 12rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Date</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
+                            <p class="card-text"> temp, wind, humidity </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-2">
+                    <div class="card" style="width: 12rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Date</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
+                            <p class="card-text"> temp, wind, humidity </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="card" style="width: 12rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
-                    <p class="card-text"> temp, wind, humidity </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 12rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
-                    <p class="card-text"> temp, wind, humidity </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 12rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
-                    <p class="card-text"> temp, wind, humidity </p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 12rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Date</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">weather icon</h6>
-                    <p class="card-text"> temp, wind, humidity </p>
-                </div>
-            </div>
-
-
+        </div>
 
     </section>
 
