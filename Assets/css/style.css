@@ -8,7 +8,7 @@ header {
 /*text area to search for a city*/
 textarea {
     resize: none;
-    width: 275px;
+    width: 100%;
     border-radius: 7px;
 }
 
@@ -17,7 +17,7 @@ hr {
     border: 0;
     border-top: 2px solid black;
     margin-top: 0 px;
-    width: 270px;
+    width: 100%;
     margin-left: 0px;
 }
 
@@ -55,11 +55,6 @@ p {
     justify-content: space-between;
 }
 
-/*d-flex for the weather dashboard to center text*/
-.d-flex {
-    justify-content: center;
-}
-
 /*row for search for a city and search button*/
 .row {
     justify-content: flex-start;
@@ -67,8 +62,8 @@ p {
 
 /* cards for 5 day forecast*/
 .card {
-    margin-top: 20px; 
-    height: 200px; 
+    margin-top: 20px;
+    height: 100%;
     background-color: #434E61;
     color: white;
 }
@@ -86,8 +81,8 @@ p {
     border-radius: 7px;
     margin-top: 10px;
     margin-bottom: 0px;
-    padding: 0px 110px;
-    height: 30px;
+    width: 100%;
+    height: 8%;
 }
 
 /*quick select city buttons*/
@@ -99,8 +94,8 @@ p {
 #seattle,
 #denver,
 #atlanta {
-    height: 30px;
-    width: 270px;
+    height: 8%;
+    width: 400%;
     border-radius: 7px;
     margin-bottom: 10px;
     background-color: lightgray;
