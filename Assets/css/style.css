@@ -21,25 +21,35 @@ hr {
     margin-left: 0px;
 }
 
+/*5day forecast*/
+h4 {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
 /*hover for all buttons*/
 button:hover {
     opacity: 65%;
 }
 
+/*temp wind humidity and uv index*/
 p {
     margin-left: 10px;
 }
 
+/*main container*/
 .container {
     display: flex;
     margin: 48px 20px 48px 20px;
 }
 
+/*container for weather box*/
 .weather-container {
     display: flex;
     flex-direction: column;
 }
 
+/*cards*/
 .cards {
     display: flex;
     justify-content: space-between;
@@ -57,7 +67,7 @@ p {
 
 /* cards for 5 day forecast*/
 .card {
-    margin-top: 50px; 
+    margin-top: 20px; 
     height: 200px; 
     background-color: #434E61;
     color: white;
