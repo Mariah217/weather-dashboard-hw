@@ -5,11 +5,8 @@ header {
     background-image: linear-gradient(to right, rgb(77, 118, 190), rgb(23, 11, 74));
 }
 
-/*text area to search for a city*/
-textarea {
-    resize: none;
-    width: 100%;
-    border-radius: 7px;
+label {
+    font-size: xx-large;
 }
 
 /*line under search btn*/
@@ -55,6 +52,16 @@ p {
     justify-content: space-between;
 }
 
+/*text inside cards*/
+.card-text {
+    margin-left: 0;
+}
+
+/*removed padding from card-body*/
+.card-body {
+    padding: 5px;
+}
+
 /*row for search for a city and search button*/
 .row {
     justify-content: flex-start;
@@ -73,8 +80,15 @@ p {
     padding: 0px;
 }
 
+/*text area to search for a city*/
+#search-city {
+    resize: none;
+    width: 100%;
+    border-radius: 7px;
+}
+
 /*search button*/
-#search-button {
+#submit-button {
     background-color: rgb(66, 144, 208);
     border: none;
     color: white;
