@@ -18,6 +18,16 @@ hr {
     margin-left: 0px;
 }
 
+ul{
+    padding: 5px;
+}
+
+/*temp, wind and humity on cards*/
+li {
+    list-style: none;
+    margin-top: 15px;
+}
+
 /*5day forecast*/
 h4 {
     margin-top: 20px;
@@ -85,10 +95,11 @@ p {
     resize: none;
     width: 100%;
     border-radius: 7px;
+    line-height: 200%;
 }
 
 /*search button*/
-#submit-button {
+#search-button {
     background-color: rgb(66, 144, 208);
     border: none;
     color: white;
@@ -96,7 +107,12 @@ p {
     margin-top: 10px;
     margin-bottom: 0px;
     width: 100%;
-    height: 8%;
+    line-height: 165%;
+}
+
+/*hover for search button*/
+#search-button:hover{
+    opacity: 65%;
 }
 
 /*quick select city buttons*/
