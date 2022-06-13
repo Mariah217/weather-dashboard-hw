@@ -29,14 +29,14 @@ var currentWeatherArray = ["weather", "current-temp", "current-wind", "current-h
 
 //function to put text from textarea into local storage
 function searchInput() {
-    var search = document.getElementById("search-city").value;
-    var citiesToSave = [];
-    if (localStorage.getItem("search-city")){
-        var localStorageHistoryJson = localStorage.getItem("search-city");
-        citiesToSave = JSON.parse(localStorageHistoryJson);
+    var search = document.getElementById("search-city").value; //getting input value from search-city
+    var citiesToSave = []; //blank array
+    if (localStorage.getItem("search-city")){ //getting search-city info from ls
+        var localStorageHistoryJson = localStorage.getItem("search-city"); //created var for local story history
+        citiesToSave = JSON.parse(localStorageHistoryJson); //parsing ls and putting it into the citiesToSave array
     }
-    citiesToSave.push(search);
-    localStorage.setItem("search-city", JSON.stringify(citiesToSave));
+    citiesToSave.push(search); //this adds a string to the end of an array
+    localStorage.setItem("search-city", JSON.stringify(citiesToSave)); //putting search-city into ls as a string.
     // getApi()
     displaySearchHistory();
 }
@@ -56,7 +56,7 @@ function displaySearchHistory(event) {
         for (let i = 0; i < cityIterationCount; i++) { //for loop parameters
             var button = document.createElement('button') //creating button in html
             var historyDiv = document.getElementById("history");//var for history div in html
-            button.innerHTML = previousSearchedCities[previousSearchedCities.length -i -1];//pulling text from local storage and putting it on buttons
+            button.innerHTML = previousSearchedCities[previousSearchedCities.length -i -1];//pulling text from local storage and putting it on buttons, only saves most recent 5 searched cities.
             historyDiv.appendChild(button); //appending button to history div
         }
     }

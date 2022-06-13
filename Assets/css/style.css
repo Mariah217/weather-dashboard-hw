@@ -35,6 +35,14 @@ h4 {
  
 }
 
+button {
+    width: 400%;
+    border: none;
+    background-color: lightgray;
+    border-radius: 7px;
+    margin-bottom: 10px;
+}
+
 /*hover for all buttons*/
 button:hover {
     opacity: 65%;
