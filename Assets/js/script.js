@@ -6,10 +6,7 @@
 //Step 6: add API ✔️
 //Step 7: create fetch request for data and put on page 
 //Step 8: unhide 5-day forecast cards when api is pulled
-
-
-
-
+//Step 9: get moment cdn for html, use moment to get weather date
 //api key
 var weatherAPIKey = "789d6254dc04a55a39b161980f745319";
 var mqAPIKey = "ASQOwbxDB04Msto95WtOdZ0yT8xPwGOG";
@@ -26,7 +23,6 @@ var historyContainerEl = document.querySelector("history");
 /*need to use seperate api for 5-day forecast than the main city name and date*/
 
 var weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?${city}&unite=${units}&exclude=hourly&appid=${weatherAPIkey}`; //i think i need a different url for this api
-var mapqApiUrl = `http://www.mapquestapi.com/geocoding/v1/address?key=KEY&location=${city}`;
 
 var currentWeatherArray = ["weather", "current-temp", "current-wind", "current-humidity", "current-index"]
 
