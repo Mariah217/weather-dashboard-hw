@@ -2,7 +2,7 @@
 //Step 2: onclick for search button ✔️
 //Step 3: grab input values from textbox and put in local storage ✔️
 //Step 4: pull from local storage and put into search history buttons ✔️
-//Step 5: create add event listener for quick select city buttons 
+//Step 5: create add event listener for search history buttons 
 //Step 6: add API ✔️
 //Step 7: create fetch request for data and put on page 
 //Step 8: unhide 5-day forecast cards when api is pulled
@@ -25,7 +25,7 @@ var historyContainerEl = document.querySelector("history");
 /*need to create variables for lat, lon and units*/
 /*need to use seperate api for 5-day forecast than the main city name and date*/
 
-// var weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&unite=${units}&exclude=hourly&appid=${weatherAPIkey}`;
+var weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?${city}&unite=${units}&exclude=hourly&appid=${weatherAPIkey}`; //i think i need a different url for this api
 var mapqApiUrl = `http://www.mapquestapi.com/geocoding/v1/address?key=KEY&location=${city}`;
 
 var currentWeatherArray = ["weather", "current-temp", "current-wind", "current-humidity", "current-index"]
@@ -64,14 +64,12 @@ function displaySearchHistory(event) {
         }
     }
 
-    // document.getElementById("search-history").innerHTML = localStorageHistory;  //put text on the screen
-
 }
 
 displaySearchHistory();
 
 //api search
-function getWeather(event) {
+function displayWeather(event) {
     event.preventDefault();
 
     fetch(weatherApiUrl)
@@ -89,3 +87,4 @@ function getWeather(event) {
 // function displaySearch ()
 
 
+historyContainerEl.addEventListener("click", displayWeather);
