@@ -1,11 +1,14 @@
 //Step 1: create static selector variables ✔️
 //Step 2: onclick for search button ✔️
 //Step 3: grab input values from textbox and put in local storage ✔️
-//Step 4: unhide 5-day forecast cards when api is pulled
-//Step 5: add API ✔️
-//Step 6: create add event listener for quick select city buttons ✔️
+//Step 4: pull from local storage and put into search history buttons ✔️
+//Step 5: create add event listener for quick select city buttons 
+//Step 6: add API ✔️
 //Step 7: create fetch request for data and put on page 
-//Step 8: pull from local storage and put into search history buttons
+//Step 8: unhide 5-day forecast cards when api is pulled
+
+
+
 
 //api key
 var weatherAPIKey = "789d6254dc04a55a39b161980f745319";

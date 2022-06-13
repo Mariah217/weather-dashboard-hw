@@ -35,6 +35,7 @@ h4 {
  
 }
 
+/*search history buttons*/
 button {
     width: 400%;
     border: none;
@@ -124,6 +125,7 @@ p {
     opacity: 65%;
 }
 
+/*search button*/
 #search-history{
     width: 400%;
     padding: 15px;
