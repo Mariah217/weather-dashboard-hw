@@ -20,6 +20,7 @@ hr {
 
 ul{
     padding: 5px;
+    margin-bottom: 0;
 }
 
 /*temp, wind and humity on cards*/
@@ -30,8 +31,8 @@ li {
 
 /*5day forecast*/
 h4 {
-    margin-top: 20px;
-    margin-left: 10px;
+    margin: 20px 0px 4px 10px;
+ 
 }
 
 /*hover for all buttons*/
@@ -115,22 +116,12 @@ p {
     opacity: 65%;
 }
 
-/*quick select city buttons*/
-#austin,
-#chicago,
-#newyork,
-#orlando,
-#sanfransisco,
-#seattle,
-#denver,
-#atlanta {
-    height: 8%;
+#search-history{
     width: 400%;
+    padding: 15px;
     border-radius: 7px;
-    margin-bottom: 10px;
-    background-color: lightgray;
-    border: none;
 }
+
 
 /*weather*/
 #weather {
