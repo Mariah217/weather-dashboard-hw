@@ -18,6 +18,16 @@ hr {
     margin-left: 0px;
 }
 
+/*city name and date in current day weather*/
+h2 {
+margin: 10px 0px 20px 10px;
+}
+
+/*temp wind & humidity*/
+p {
+    margin-left: 10px;
+}
+
 ul{
     padding: 5px;
     margin-bottom: 0;
@@ -35,6 +45,12 @@ h4 {
  
 }
 
+/*icon image*/
+img {
+    height: 5%;
+    width: 5%;
+}
+
 /*search history buttons*/
 button {
     width: 400%;
@@ -47,11 +63,6 @@ button {
 /*hover for all buttons*/
 button:hover {
     opacity: 65%;
-}
-
-/*temp wind humidity and uv index*/
-p {
-    margin-left: 10px;
 }
 
 /*main container*/
