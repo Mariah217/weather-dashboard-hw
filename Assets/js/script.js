@@ -8,29 +8,28 @@
 //Step 8: unhide 5-day forecast cards when api is pulled
 //Step 9: get moment cdn for html, use moment to get weather date
 //api key
-var weatherAPIKey = "789d6254dc04a55a39b161980f745319";
-var mqAPIKey = "ASQOwbxDB04Msto95WtOdZ0yT8xPwGOG";
+var APIKey = "789d6254dc04a55a39b161980f745319";
+
 
 //Variables:
 var searchCityEl = document.querySelector("#search-city");
-var city = document.querySelector("#search-city").value;
 var searchBtn = document.querySelector("#search-button");
 var userFormEl = document.querySelector("#user-form");
 var dateEL = document.querySelector(".card-title");
-var historyContainerEl = document.querySelector("history");
-
-/*need to create variables for lat, lon and units*/
-/*need to use seperate api for 5-day forecast than the main city name and date*/
-
-var weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?${city}&unite=${units}&exclude=hourly&appid=${weatherAPIkey}`; //i think i need a different url for this api
-
-var currentWeatherArray = ["weather", "current-temp", "current-wind", "current-humidity", "current-index"]
+var historyContainerEl = document.querySelector("#history");
+var weatherHeaderEl = document.querySelector("#weather-header");
+var tempEl = document.querySelector("#current-temp");
+var windEl = document.querySelector("#current-wind");
+var humidityEl = document.querySelector("#current-humidity");
+var uvIndexEl = document.querySelector("#current-index");
+var currentWeatherArray = ["weather", "current-temp", "current-wind", "current-humidity", 
+"current-index"]
 
 //function to put text from textarea into local storage
 function searchInput() {
     var search = document.getElementById("search-city").value; //getting input value from search-city
     var citiesToSave = []; //blank array
-    if (localStorage.getItem("search-city")){ //getting search-city info from ls
+    if (localStorage.getItem("search-city")) { //getting search-city info from ls
         var localStorageHistoryJson = localStorage.getItem("search-city"); //created var for local story history
         citiesToSave = JSON.parse(localStorageHistoryJson); //parsing ls and putting it into the citiesToSave array
     }
@@ -55,7 +54,7 @@ function displaySearchHistory(event) {
         for (let i = 0; i < cityIterationCount; i++) { //for loop parameters
             var button = document.createElement('button') //creating button in html
             var historyDiv = document.getElementById("history");//var for history div in html
-            button.innerHTML = previousSearchedCities[previousSearchedCities.length -i -1];//pulling text from local storage and putting it on buttons, only saves most recent 5 searched cities.
+            button.innerHTML = previousSearchedCities[previousSearchedCities.length - i - 1];//pulling text from local storage and putting it on buttons, only saves most recent 5 searched cities.
             historyDiv.appendChild(button); //appending button to history div
         }
     }
@@ -67,20 +66,27 @@ displaySearchHistory();
 //api search
 function displayWeather(event) {
     event.preventDefault();
+    var cityName = searchCityEl.value
+    var currentWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}&units=imperial`;
 
-    fetch(weatherApiUrl)
+    fetch(currentWeatherAPI)
         .then(function (response) {
             return response.json();
         })
-        .then(function (data) {
-            for (let i = 0; index < data.length; index++) {
+        .then(function (currentData) {
+            console.log(currentData);
+            var fiveDayUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${currentData.coord.lat}&lon=${currentData.coord.lon}&appid=${APIKey}&units=imperial` //using dot notation to pull from api data, current data is all of the info that populates in the console log.
 
-            }
+            fetch(fiveDayUrl)
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(fiveDayData) {
+                    console.log(fiveDayData);
+                    weatherHeaderEl.textContent=currentData.name; //puts city name into weather header
+                    tempEl.textContent = currentData.main.temp + "F";
+                })
         })
 }
 
-//function to display search results under city name and date and cards. Unhide cards (use visible for bootstrap)
-// function displaySearch ()
-
-
-historyContainerEl.addEventListener("click", displayWeather);
+userFormEl.addEventListener("submit", displayWeather);
