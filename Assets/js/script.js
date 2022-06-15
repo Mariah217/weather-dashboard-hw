@@ -22,8 +22,6 @@ var tempEl = document.querySelector("#current-temp");
 var windEl = document.querySelector("#current-wind");
 var humidityEl = document.querySelector("#current-humidity");
 var uvIndexEl = document.querySelector("#current-index");
-var currentWeatherArray = ["weather", "current-temp", "current-wind", "current-humidity", 
-"current-index"]
 
 //function to put text from textarea into local storage
 function searchInput() {
@@ -63,7 +61,7 @@ function displaySearchHistory(event) {
 
 displaySearchHistory();
 
-//api search
+//api search/display
 function displayWeather(event) {
     event.preventDefault();
     var cityName = searchCityEl.value
@@ -83,8 +81,15 @@ function displayWeather(event) {
                 })
                 .then(function(fiveDayData) {
                     console.log(fiveDayData);
-                    weatherHeaderEl.textContent=currentData.name; //puts city name into weather header
-                    tempEl.textContent = currentData.main.temp + "F";
+                    var iconImg = document.createElement("img"); //creating img element in html for weather icon
+                    var currentDate = moment.unix(currentData.dt).format("MM/DD/YYYY"); //unix parses data from total number of seconds to regular date format.
+                    iconImg.setAttribute("src", `http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`);//gets icon from data
+                    weatherHeaderEl.innerHTML=currentData.name + " " + currentDate; //puts city name into weather header
+                    tempEl.textContent = currentData.main.temp + "F"; //pulls temp from data and puts onto the page
+                    weatherHeaderEl.appendChild(iconImg); //appends icon image to weather header
+                    windEl.textContent = currentData.wind.speed + "mph"; //pulls wind from data and puts onto the page
+                    humidityEl.textContent = currentData.main.humidity + "%";
+
                 })
         })
 }
