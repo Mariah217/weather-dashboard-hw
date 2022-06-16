@@ -5,7 +5,7 @@
 //Step 5: create add event listener for search history buttons 
 //Step 6: add API ✔️
 //Step 7: create fetch request for data and put on page ✔️
-//Step 8: unhide 5-day forecast cards when api is pulled
+//Step 8: unhide 5-day forecast cards when api is pulled ✔️
 //Step 9: get moment cdn for html, use moment to get weather date ✔️
 //Step 10: make website responsive 
 
@@ -91,7 +91,9 @@ displaySearchHistory();
 
 //api search/display
 function displayWeather(event) {
+    visibility.classList.remove("invisible");
     event.preventDefault();//prevents page from refreshing
+
     var cityName = searchCityEl.value
     var currentWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}&units=imperial`;
 

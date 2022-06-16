@@ -36,19 +36,26 @@ ul{
 /*temp, wind and humity on cards*/
 li {
     list-style: none;
-    margin-top: 15px;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    padding: 0px;
 }
 
 /*5day forecast*/
 h4 {
-    margin: 20px 0px 4px 10px;
- 
+    margin-left: 10px;
 }
 
 /*icon image*/
 img {
     height: 5%;
     width: 5%;
+}
+
+/*5 day forecast card img's*/
+h6 img {
+    height: 50%;
+    width: 50%;
 }
 
 
