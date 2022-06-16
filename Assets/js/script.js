@@ -8,7 +8,6 @@
 //Step 8: unhide 5-day forecast cards when api is pulled
 //Step 9: get moment cdn for html, use moment to get weather date ✔️
 //Step 10: make website responsive 
-//Step 11: create alert if nothing is typed into the search box
 
 //api key
 var APIKey = "789d6254dc04a55a39b161980f745319";
@@ -25,30 +24,31 @@ var windEl = document.querySelector("#current-wind");
 var humidityEl = document.querySelector("#current-humidity");
 var uvIndexEl = document.querySelector("#current-index");
 var date1EL = document.querySelector("#date1");
-var icon1El = document.querySelector("icon1");
+var icon1El = document.querySelector("#icon1");
 var temp1El = document.querySelector("#temp1");
 var wind1El = document.querySelector("#wind1");
 var humidty1El = document.querySelector("#humidity1");
 var date2EL = document.querySelector("#date2");
-var icon2El = document.querySelector("icon2");
+var icon2El = document.querySelector("#icon2");
 var temp2El = document.querySelector("#temp2");
 var wind2El = document.querySelector("#wind2");
 var humidty2El = document.querySelector("#humidity2");
 var date3EL = document.querySelector("#date3");
-var icon3El = document.querySelector("icon3");
+var icon3El = document.querySelector("#icon3");
 var temp3El = document.querySelector("#temp3");
 var wind3El = document.querySelector("#wind3");
 var humidty3El = document.querySelector("#humidity3");
 var date4EL = document.querySelector("#date4");
-var icon4El = document.querySelector("icon4");
+var icon4El = document.querySelector("#icon4");
 var temp4El = document.querySelector("#temp4");
 var wind4El = document.querySelector("#wind4");
 var humidty4El = document.querySelector("#humidity4");
 var date5EL = document.querySelector("#date5");
-var icon5El = document.querySelector("icon5");
+var icon5El = document.querySelector("#icon5");
 var temp5El = document.querySelector("#temp5");
 var wind5El = document.querySelector("#wind5");
 var humidty5El = document.querySelector("#humidity5");
+
 //function to put text from textarea into local storage
 function searchInput() {
     var search = document.getElementById("search-city").value; //getting input value from search-city
@@ -75,16 +75,16 @@ function displaySearchHistory(event) {
         if (previousSearchedCities.length <= 5) { //if local storage array is less than or equal to five
             cityIterationCount = previousSearchedCities.length; //change city iteration count to equal however many elements are in the array (1,2,3 etc.)
         }
-        for (let i = 0; i < cityIterationCount; i++) { //for loop parameters
-            var button = document.createElement('button'); //creating button in html
-            var historyDiv = document.getElementById("history");//var for history div in html
-            button.innerHTML = previousSearchedCities[previousSearchedCities.length - i - 1];//pulling text from local storage and putting it on buttons, only saves most recent 5 searched cities.
-            historyDiv.appendChild(button); //appending button to history div
-
-            // button.addEventListener("click", displayWeather);
-        }
     }
 
+    for (let i = 0; i < cityIterationCount; i++) { //for loop parameters
+        var button = document.createElement('button'); //creating button in html
+        var historyDiv = document.getElementById("history");//var for history div in html
+        button.innerHTML = previousSearchedCities[previousSearchedCities.length - i - 1];//pulling text from local storage and putting it on buttons, only saves most recent 5 searched cities.
+        historyDiv.appendChild(button); //appending button to history div
+
+        // button.addEventListener("click", displayWeather);
+    }
 }
 
 displaySearchHistory();
@@ -118,11 +118,49 @@ function displayWeather(event) {
                     windEl.textContent = currentData.wind.speed + "mph"; //pulls wind from data and puts onto the page
                     humidityEl.textContent = currentData.main.humidity + "%";
 
+                    date1EL.textContent= moment.unix(fiveDayData.daily[1].dt).format("MM/DD/YYYY");
+                    date2EL.textContent= moment.unix(fiveDayData.daily[2].dt).format("MM/DD/YYYY");
+                    date3EL.textContent= moment.unix(fiveDayData.daily[3].dt).format("MM/DD/YYYY");
+                    date4EL.textContent= moment.unix(fiveDayData.daily[4].dt).format("MM/DD/YYYY");
+                    date5EL.textContent= moment.unix(fiveDayData.daily[5].dt).format("MM/DD/YYYY");
 
+                    temp1El.textContent = "Temp: " + fiveDayData.daily[1].temp.day + "F";
+                    temp2El.textContent = "Temp: " + fiveDayData.daily[2].temp.day + "F";
+                    temp3El.textContent = "Temp: " + fiveDayData.daily[3].temp.day + "F";
+                    temp4El.textContent = "Temp: " + fiveDayData.daily[4].temp.day + "F";
+                    temp5El.textContent = "Temp: " + fiveDayData.daily[5].temp.day + "F";
 
-                    var dailyDate = moment.unix(fiveDayData.daily[].dt).format("MM/DD/YYYY");
-                    
-                    temp1El.textContent = fiveDayData.daily[1].temp;
+                    wind1El.textContent = "Wind: " + fiveDayData.daily[1].wind_speed + "mph";
+                    wind2El.textContent = "Wind: " + fiveDayData.daily[2].wind_speed + "mph";
+                    wind3El.textContent = "Wind: " + fiveDayData.daily[3].wind_speed + "mph";
+                    wind4El.textContent = "Wind: " + fiveDayData.daily[4].wind_speed + "mph";
+                    wind5El.textContent = "Wind: " + fiveDayData.daily[5].wind_speed + "mph";
+            
+                    humidty1El.textContent = "Humidity: " + fiveDayData.daily[1].humidity + "%";
+                    humidty2El.textContent = "Humidity: " + fiveDayData.daily[2].humidity + "%";
+                    humidty3El.textContent = "Humidity: " + fiveDayData.daily[3].humidity + "%";
+                    humidty4El.textContent = "Humidity: " + fiveDayData.daily[4].humidity + "%";
+                    humidty5El.textContent = "Humidity: " + fiveDayData.daily[5].humidity + "%";
+
+                    var iconImg2 = document.createElement("img");
+                    iconImg2.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[1].weather[0].icon}@2x.png`);
+                    icon1El.appendChild(iconImg2);
+
+                    var iconImg3 = document.createElement("img");
+                    iconImg3.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[2].weather[0].icon}@2x.png`);
+                    icon2El.appendChild(iconImg3);
+
+                    var iconImg4 = document.createElement("img");
+                    iconImg4.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[3].weather[0].icon}@2x.png`);
+                    icon3El.appendChild(iconImg4);
+
+                    var iconImg5 = document.createElement("img");
+                    iconImg5.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[4].weather[0].icon}@2x.png`);
+                    icon4El.appendChild(iconImg5);
+
+                    var iconImg6 = document.createElement("img");
+                    iconImg6.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[5].weather[0].icon}@2x.png`);
+                    icon5El.appendChild(iconImg6);
                 })
         })
 }
