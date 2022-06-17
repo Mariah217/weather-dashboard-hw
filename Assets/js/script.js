@@ -50,7 +50,7 @@ var wind5El = document.querySelector("#wind5");
 var humidty5El = document.querySelector("#humidity5");
 
 //function to put text from textarea into local storage
-function searchInput() {
+function saveInputToLocalStorageAndPopulateSearchHistory() {
     var search = document.getElementById("search-city").value; //getting input value from search-city
     var citiesToSave = []; //blank array
     if (localStorage.getItem("search-city")) { //getting search-city info from ls
@@ -77,11 +77,10 @@ function displaySearchHistory(event) {
         }
     }
 
-    
     var previousSearchHistoryBtns = document.getElementsByClassName("searchHistoryBtn");
     for (let i = 0; i < 5; i++) { //looping through each one
-        if (previousSearchHistoryBtns.length!=0 ){
-        previousSearchHistoryBtns[0].remove(); //telling each weather icon to remove itself
+        if (previousSearchHistoryBtns.length != 0) {
+            previousSearchHistoryBtns[0].remove(); //telling each weather icon to remove itself
         }
     }
     //adds buttons to history
@@ -90,18 +89,28 @@ function displaySearchHistory(event) {
         var historyDiv = document.getElementById("history");//var for history div in html
         button.innerHTML = previousSearchedCities[previousSearchedCities.length - i - 1];//pulling text from local storage and putting it on buttons, only saves most recent 5 searched cities. 
         button.setAttribute("class", "searchHistoryBtn");
+        button.addEventListener("click", fetchAndDisplayWeatherFromButton);
         historyDiv.appendChild(button); //appending button to history div
     }
 }
 
- displaySearchHistory();
+displaySearchHistory();
 
 //api search/display
-function displayWeather(event) {
+function fetchAndDisplayWeatherFromSearchInput(event) {
     // visibility.classList.remove("invisible");
     event.preventDefault();//prevents page from refreshing
+    var cityName = searchCityEl.value //getting text from text input
+    fetchWeatherDataAndDisplay(cityName);
+}
 
-    var cityName = searchCityEl.value
+function fetchAndDisplayWeatherFromButton(button) {
+    var targetButton = button.target;
+    var cityName = targetButton.textContent; //getting text from button
+    fetchWeatherDataAndDisplay(cityName);
+}
+
+function fetchWeatherDataAndDisplay(cityName) {
     var currentWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}&units=imperial`;
 
     fetch(currentWeatherAPI)
@@ -117,77 +126,77 @@ function displayWeather(event) {
                     return response.json();
                 })
                 .then(function (fiveDayData) {
-                    console.log(fiveDayData);
-                    var iconImg = document.createElement("img"); //creating img element in html for weather icon
-                    var currentDate = moment.unix(currentData.dt).format("MM/DD/YYYY"); //unix parses data from total number of seconds to regular date format.
-                    iconImg.setAttribute("src", `http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`);//gets icon from data
-                    weatherHeaderEl.innerHTML = currentData.name + " " + currentDate; //puts city name into weather header
-                    tempEl.textContent = currentData.main.temp + "F"; //pulls temp from data and puts onto the page
-                    weatherHeaderEl.appendChild(iconImg); //appends icon image to weather header
-                    windEl.textContent = currentData.wind.speed + "mph"; //pulls wind from data and puts onto the page
-                    humidityEl.textContent = currentData.main.humidity + "%";
-
-                    date1EL.textContent= moment.unix(fiveDayData.daily[1].dt).format("MM/DD/YYYY");
-                    date2EL.textContent= moment.unix(fiveDayData.daily[2].dt).format("MM/DD/YYYY");
-                    date3EL.textContent= moment.unix(fiveDayData.daily[3].dt).format("MM/DD/YYYY");
-                    date4EL.textContent= moment.unix(fiveDayData.daily[4].dt).format("MM/DD/YYYY");
-                    date5EL.textContent= moment.unix(fiveDayData.daily[5].dt).format("MM/DD/YYYY");
-
-                    temp1El.textContent = "Temp: " + fiveDayData.daily[1].temp.day + "F";
-                    temp2El.textContent = "Temp: " + fiveDayData.daily[2].temp.day + "F";
-                    temp3El.textContent = "Temp: " + fiveDayData.daily[3].temp.day + "F";
-                    temp4El.textContent = "Temp: " + fiveDayData.daily[4].temp.day + "F";
-                    temp5El.textContent = "Temp: " + fiveDayData.daily[5].temp.day + "F";
-
-                    wind1El.textContent = "Wind: " + fiveDayData.daily[1].wind_speed + "mph";
-                    wind2El.textContent = "Wind: " + fiveDayData.daily[2].wind_speed + "mph";
-                    wind3El.textContent = "Wind: " + fiveDayData.daily[3].wind_speed + "mph";
-                    wind4El.textContent = "Wind: " + fiveDayData.daily[4].wind_speed + "mph";
-                    wind5El.textContent = "Wind: " + fiveDayData.daily[5].wind_speed + "mph";
-            
-                    humidty1El.textContent = "Humidity: " + fiveDayData.daily[1].humidity + "%";
-                    humidty2El.textContent = "Humidity: " + fiveDayData.daily[2].humidity + "%";
-                    humidty3El.textContent = "Humidity: " + fiveDayData.daily[3].humidity + "%";
-                    humidty4El.textContent = "Humidity: " + fiveDayData.daily[4].humidity + "%";
-                    humidty5El.textContent = "Humidity: " + fiveDayData.daily[5].humidity + "%";
-
-                    //select all the existing weather icons
-                    //remove all the previous weather icons
-
-                    var weatherIcons = document.getElementsByClassName("weatherIcons")//array of weather icons
-                    for (let i = 0; i < 5; i++) { //looping through each one
-                        if (weatherIcons.length!=0 ){
-                        weatherIcons[0].remove(); //telling each weather icon to remove itself
-                        }
-                    }
-
-                    var secondDayWeatherImg = document.createElement("img");
-                    secondDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[1].weather[0].icon}@2x.png`);
-                    secondDayWeatherImg.setAttribute("class", "weatherIcons");
-                    dayTwoCardSubtitle.appendChild(secondDayWeatherImg);
-
-                    var thirdDayWeatherImg = document.createElement("img");
-                    thirdDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[2].weather[0].icon}@2x.png`);
-                    thirdDayWeatherImg.setAttribute("class", "weatherIcons");
-                    dayThreeCardSubtitle.appendChild(thirdDayWeatherImg);
-
-                    var fourthDayWeatherImg = document.createElement("img");
-                    fourthDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[3].weather[0].icon}@2x.png`);
-                    fourthDayWeatherImg.setAttribute("class", "weatherIcons");
-                    dayFourCardSubtitle.appendChild(fourthDayWeatherImg);
-
-                    var fifthDayWeatherImg = document.createElement("img");
-                    fifthDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[4].weather[0].icon}@2x.png`);
-                    fifthDayWeatherImg.setAttribute("class", "weatherIcons");
-                    dayFiveCardSubtitle.appendChild(fifthDayWeatherImg);
-
-                    var sixthDayWeatherImg = document.createElement("img");
-                    sixthDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[5].weather[0].icon}@2x.png`);
-                    sixthDayWeatherImg.setAttribute("class", "weatherIcons");
-                    daySixCardSubtitle.appendChild(sixthDayWeatherImg);
+                    console.log(fiveDayData)
+                    displayWeatherData(currentData, fiveDayData);
                 })
         })
 }
 
+function displayWeatherData(currentData, fiveDayData) {
+    var iconImg = document.createElement("img"); //creating img element in html for weather icon
+    var currentDate = moment.unix(currentData.dt).format("MM/DD/YYYY"); //unix parses data from total number of seconds to regular date format.
+    iconImg.setAttribute("src", `http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`);//gets icon from data
+    weatherHeaderEl.innerHTML = currentData.name + " " + currentDate; //puts city name into weather header
+    tempEl.textContent = currentData.main.temp + "F"; //pulls temp from data and puts onto the page
+    weatherHeaderEl.appendChild(iconImg); //appends icon image to weather header
+    windEl.textContent = currentData.wind.speed + "mph"; //pulls wind from data and puts onto the page
+    humidityEl.textContent = currentData.main.humidity + "%";
 
-userFormEl.addEventListener("submit", displayWeather);
+    date1EL.textContent = moment.unix(fiveDayData.daily[1].dt).format("MM/DD/YYYY");
+    date2EL.textContent = moment.unix(fiveDayData.daily[2].dt).format("MM/DD/YYYY");
+    date3EL.textContent = moment.unix(fiveDayData.daily[3].dt).format("MM/DD/YYYY");
+    date4EL.textContent = moment.unix(fiveDayData.daily[4].dt).format("MM/DD/YYYY");
+    date5EL.textContent = moment.unix(fiveDayData.daily[5].dt).format("MM/DD/YYYY");
+
+    temp1El.textContent = "Temp: " + fiveDayData.daily[1].temp.day + "F";
+    temp2El.textContent = "Temp: " + fiveDayData.daily[2].temp.day + "F";
+    temp3El.textContent = "Temp: " + fiveDayData.daily[3].temp.day + "F";
+    temp4El.textContent = "Temp: " + fiveDayData.daily[4].temp.day + "F";
+    temp5El.textContent = "Temp: " + fiveDayData.daily[5].temp.day + "F";
+
+    wind1El.textContent = "Wind: " + fiveDayData.daily[1].wind_speed + "mph";
+    wind2El.textContent = "Wind: " + fiveDayData.daily[2].wind_speed + "mph";
+    wind3El.textContent = "Wind: " + fiveDayData.daily[3].wind_speed + "mph";
+    wind4El.textContent = "Wind: " + fiveDayData.daily[4].wind_speed + "mph";
+    wind5El.textContent = "Wind: " + fiveDayData.daily[5].wind_speed + "mph";
+
+    humidty1El.textContent = "Humidity: " + fiveDayData.daily[1].humidity + "%";
+    humidty2El.textContent = "Humidity: " + fiveDayData.daily[2].humidity + "%";
+    humidty3El.textContent = "Humidity: " + fiveDayData.daily[3].humidity + "%";
+    humidty4El.textContent = "Humidity: " + fiveDayData.daily[4].humidity + "%";
+    humidty5El.textContent = "Humidity: " + fiveDayData.daily[5].humidity + "%";
+
+
+    var weatherIcons = document.getElementsByClassName("weatherIcons")//array of weather icons
+    for (let i = 0; i < 5; i++) { //looping through each one
+        if (weatherIcons.length != 0) {
+            weatherIcons[0].remove(); //telling each weather icon to remove itself
+        }
+    }
+
+    var secondDayWeatherImg = document.createElement("img");
+    secondDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[1].weather[0].icon}@2x.png`);
+    secondDayWeatherImg.setAttribute("class", "weatherIcons");
+    dayTwoCardSubtitle.appendChild(secondDayWeatherImg);
+
+    var thirdDayWeatherImg = document.createElement("img");
+    thirdDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[2].weather[0].icon}@2x.png`);
+    thirdDayWeatherImg.setAttribute("class", "weatherIcons");
+    dayThreeCardSubtitle.appendChild(thirdDayWeatherImg);
+
+    var fourthDayWeatherImg = document.createElement("img");
+    fourthDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[3].weather[0].icon}@2x.png`);
+    fourthDayWeatherImg.setAttribute("class", "weatherIcons");
+    dayFourCardSubtitle.appendChild(fourthDayWeatherImg);
+
+    var fifthDayWeatherImg = document.createElement("img");
+    fifthDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[4].weather[0].icon}@2x.png`);
+    fifthDayWeatherImg.setAttribute("class", "weatherIcons");
+    dayFiveCardSubtitle.appendChild(fifthDayWeatherImg);
+
+    var sixthDayWeatherImg = document.createElement("img");
+    sixthDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[5].weather[0].icon}@2x.png`);
+    sixthDayWeatherImg.setAttribute("class", "weatherIcons");
+    daySixCardSubtitle.appendChild(sixthDayWeatherImg);
+}
+userFormEl.addEventListener("submit", fetchAndDisplayWeatherFromSearchInput);
