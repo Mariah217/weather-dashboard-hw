@@ -164,3 +164,23 @@ button:hover {
     width: 100%;
     margin: 10px;
 }
+
+/*phone*/
+/* @media screen and (max-width: 480px) {
+    .cards {
+        display: block;
+    }
+    h1 {
+        width: 100%;
+    }
+} */
+
+/*tablet*/
+/* @media screen and (max-width: 768px) {
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+ } */
+
