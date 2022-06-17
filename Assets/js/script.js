@@ -77,10 +77,19 @@ function displaySearchHistory(event) {
         }
     }
 
+    
+    var previousSearchHistoryBtns = document.getElementsByClassName("searchHistoryBtn");
+    for (let i = 0; i < 5; i++) { //looping through each one
+        if (previousSearchHistoryBtns.length!=0 ){
+        previousSearchHistoryBtns[0].remove(); //telling each weather icon to remove itself
+        }
+    }
+    //adds buttons to history
     for (let i = 0; i < cityIterationCount; i++) { //for loop parameters
         var button = document.createElement('button'); //creating button in html
         var historyDiv = document.getElementById("history");//var for history div in html
         button.innerHTML = previousSearchedCities[previousSearchedCities.length - i - 1];//pulling text from local storage and putting it on buttons, only saves most recent 5 searched cities. 
+        button.setAttribute("class", "searchHistoryBtn");
         historyDiv.appendChild(button); //appending button to history div
     }
 }
