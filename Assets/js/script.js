@@ -2,12 +2,10 @@
 //Step 2: onclick for search button ✔️
 //Step 3: grab input values from textbox and put in local storage ✔️
 //Step 4: pull from local storage and put into search history buttons ✔️
-//Step 5: create add event listener for search history buttons 
+//Step 5: create add event listener for search history buttons ✔️
 //Step 6: add API ✔️
 //Step 7: create fetch request for data and put on page ✔️
-//Step 8: unhide 5-day forecast cards when api is pulled ✔️
-//Step 9: get moment cdn for html, use moment to get weather date ✔️
-//Step 10: make website responsive 
+//Step 8: get moment cdn for html, use moment to get weather date ✔️
 
 //api key
 var APIKey = "789d6254dc04a55a39b161980f745319";
@@ -133,7 +131,7 @@ function fetchWeatherDataAndDisplay(cityName) {
 }
 
 function displayWeatherData(currentData, fiveDayData) {
-    var iconImg = document.createElement("img"); //creating img element in html for weather icon
+    var iconImg = document.createElement("img"); //creating img element in html for weather icon for current day
     var currentDate = moment.unix(currentData.dt).format("MM/DD/YYYY"); //unix parses data from total number of seconds to regular date format.
     iconImg.setAttribute("src", `http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png`);//gets icon from data
     weatherHeaderEl.innerHTML = currentData.name + " " + currentDate; //puts city name into weather header
@@ -167,6 +165,7 @@ function displayWeatherData(currentData, fiveDayData) {
     humidty5El.textContent = "Humidity: " + fiveDayData.daily[5].humidity + "%";
 
 
+    //this keeps weather icons from adding to each other each time a city is searched
     var weatherIcons = document.getElementsByClassName("weatherIcons")//array of weather icons
     for (let i = 0; i < 5; i++) { //looping through each one
         if (weatherIcons.length != 0) {
@@ -174,6 +173,7 @@ function displayWeatherData(currentData, fiveDayData) {
         }
     }
 
+    //creating img element for weather icons and pulling from api
     var secondDayWeatherImg = document.createElement("img");
     secondDayWeatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${fiveDayData.daily[1].weather[0].icon}@2x.png`);
     secondDayWeatherImg.setAttribute("class", "weatherIcons");
