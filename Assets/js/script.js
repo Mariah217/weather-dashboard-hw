@@ -128,6 +128,9 @@ function fetchWeatherDataAndDisplay(cityName) {
                     displayWeatherData(currentData, fiveDayData);
                 })
         })
+        .catch((error) => {
+            console.log(error)
+        });
 }
 
 function displayWeatherData(currentData, fiveDayData) {
