@@ -24,7 +24,7 @@
         <div class="col-12 col-md-3 p-0">
             <form id="user-form">
                 <label for="search-city"><strong>Search for a City:</strong></label><br>
-                <input type="text" id="search-city" value="" placeholder="San Diego"> <br>
+                <input type="text" onfocus="this.value=''" id="search-city" value="San Diego" placeholder="San Diego"> <br>
                 <input type="submit" id="search-button" value="Search" onclick="saveInputToLocalStorageAndPopulateSearchHistory()">
             </form>
             <hr>
