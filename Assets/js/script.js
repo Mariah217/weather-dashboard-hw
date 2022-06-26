@@ -20,7 +20,7 @@ var weatherHeaderEl = document.querySelector("#weather-header");
 var tempEl = document.querySelector("#current-temp");
 var windEl = document.querySelector("#current-wind");
 var humidityEl = document.querySelector("#current-humidity");
-var uvIndexEl = document.querySelector("#current-index");
+var indexEl = document.querySelector("#current-index");
 var date1EL = document.querySelector("#date1");
 var dayTwoCardSubtitle = document.querySelector("#icon1");
 var temp1El = document.querySelector("#temp1");
@@ -139,6 +139,7 @@ function displayWeatherData(currentData, fiveDayData) {
     weatherHeaderEl.appendChild(iconImg); //appends icon image to weather header
     windEl.textContent = currentData.wind.speed + "mph"; //pulls wind from data and puts onto the page
     humidityEl.textContent = currentData.main.humidity + "%";
+    indexEl.textContent = fiveDayData.current.uvi;
 
     date1EL.textContent = moment.unix(fiveDayData.daily[1].dt).format("MM/DD/YYYY");
     date2EL.textContent = moment.unix(fiveDayData.daily[2].dt).format("MM/DD/YYYY");
